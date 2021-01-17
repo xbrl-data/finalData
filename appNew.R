@@ -1,6 +1,6 @@
 library(shiny)
 library(shinymaterial)
-library(shinyMobile)
+#library(shinyMobile)
 library(shinyWidgets)
 library(highcharter)
 library(lubridate)
@@ -8,6 +8,7 @@ library(leaflet)
 library(shinyjs)
 library(polished)
 library(glue)
+library(bsplus)
 
 cols <- c('#0D1540', '#06357a', '#00a4e3', '#adafb2', '#a31c37', '#d26400', '#eaa814', '#5c1848', '#786592', '#ff4e50', '#027971', '#008542', '#5c6d00')
 
@@ -39,8 +40,8 @@ ui <- material_page(
   title ="",
   #nav_bar_fixed = T,
   #nav_bar_color = "white",
-  include_fonts = TRUE,
-  include_icons = TRUE,
+  include_fonts = F,
+  include_icons = F,
   background_color =  "grey lighten-5",
   primary_theme_color = "#424242",
   include_nav_bar = FALSE,
@@ -94,69 +95,83 @@ ui <- material_page(
           button_color = "red darken-4",
           button_icon = "home",
           title = "",
-          f7Block(
-            
+          material_card(
+            title = '', depth = 2,
             h6("In today's data-driven world, finding a home in Houston is
                easy.  Finding the perfect home is difficult.  With our dedicated staff
                and resources, we can easily help you find your forever home.", style = "color:#06357a;"),
             br(),
             tags$a(img(src = 'https://www.kwmemorial.com/wp-content/uploads/2018/11/home_scr_2_1.jpg')),
             br(),
+          
             
-            h6("Find a realtor", style = "color:#06357a;"), style="text-align: center;",
-            
-            
-            f7Link(label = icon("piggy-bank", "fa-3x"),
-                   src = "https://www.consumerfinance.gov/owning-a-home/prepare/",
-                   external = TRUE),
             
             h6("Assess finances", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("university", "fa-3x"),
-                   src = "https://www.bankrate.com/calculators/mortgages/how-much-money-can-i-borrow.aspx",
-                   external = TRUE),
+            HTML('<a href="https://www.bankrate.com/calculators/mortgages/how-much-money-can-i-borrow.aspx" target = "_blank">
+                  <i class=" fa fa-university fa-3x"></i>
+                  </a>'),
+           
             
             h6("Qualify for mortgage", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("check-double", "fa-3x"),
-                   src = "https://www.moneyunder30.com/home-buying-checklist-wants-vs-needs",
-                   external = TRUE),
+            HTML('<a href="https://www.moneyunder30.com/home-buying-checklist-wants-vs-needs" target = "_blank">
+                  <i class=" fa fa-check-double fa-3x"></i>
+                  </a>'),
+            
+   
             
             h6("Assess wants and needs", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("home", "fa-3x"),
-                   src = "https://www.kwmemorial.com/advanced-search-property/",
-                   external = TRUE),
+            
+            HTML('<a href="https://www.kwmemorial.com/advanced-search-property/" target = "_blank">
+                  <i class=" fa fa-home fa-3x"></i>
+                  </a>'),
+            
+           
             
             h6("Find your perfect home", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("handshake", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/buyers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/buyers/" target = "_blank">
+                  <i class=" fa fa-handshake fa-3x"></i>
+                  </a>'),
+            
+            
             
             h6("Make an offer", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("info-circle", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/buyers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/buyers/" target = "_blank">
+                  <i class=" fa fa-info-circle fa-3x"></i>
+                  </a>'),
+            
+           
             
             h6("Home inspection", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("thumbs-up", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/buyers/",
-                   external = TRUE),
+            
+            
+            HTML('<a href="https://www.kwmemorial.com/services/buyers/" target = "_blank">
+                  <i class=" fa fa-thumbs-up fa-3x"></i>
+                  </a>'),
+            
+          
             
             h6("Mortgage approved", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("tasks", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/buyers/",
-                   external = TRUE),
+            
+            HTML('<a href="https://www.kwmemorial.com/services/buyers/" target = "_blank">
+                  <i class=" fa fa-tasks fa-3x"></i>
+                  </a>'),
+            
             
             h6("Prepare for closing", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("truck-moving", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/buyers/",
-                   external = TRUE),
+            
+            HTML('<a href="https://www.kwmemorial.com/services/buyers/" target = "_blank">
+                  <i class=" fa fa-truck-moving fa-3x"></i>
+                  </a>'),
+            
+            
             
             h6("Move In!", style = "color:#06357a;"), style="text-align: center;"
             
@@ -173,73 +188,76 @@ ui <- material_page(
           button_color = "grey darken-3",
           button_icon = "swap_horiz",
           title = "",
-          f7Block(
-            
+          material_card(
+            title = '',
+            depth = 2,
             h6("Our dedicated professionals, unparalleled brand, and innovative tools
           can help you to understand the best ways to maximize the value of your home.", 
                style = "color:#06357a;"),
             br(),
             tags$a(img(src = 'https://www.kwmemorial.com/wp-content/uploads/2018/08/index-our-services-pic-1.jpg', width ='35%')),
             br(),
+            HTML('<a href="https://www.kwmemorial.com/" target = "_blank">
+                  <i class=" fa fa-search fa-3x"></i>
+                  </a>'),
             
-            f7Link(label = icon("search", "fa-3x"),
-                   src = "https://www.kwmemorial.com",
-                   external = TRUE),
             h6("Find a realtor", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("hand-holding-usd", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-hand-holding-usd fa-3x"></i>
+                  </a>'),
+
             
             h6("Pricing Strategy", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("bullhorn", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
             
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-bullhorn fa-3x"></i>
+                  </a>'),
+        
             
             h6("Marketing", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("paint-roller", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-paint-roller fa-3x"></i>
+                  </a>'),
             
             h6("Prepare home", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("ad", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-ad fa-3x"></i>
+                  </a>'),
             
             
             h6("List Home", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("shoe-prints", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-shoe-prints fa-3x"></i>
+                  </a>'),
             
             h6("Showings/Open House", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("exchange-alt", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-exchange-alt fa-3x"></i>
+                  </a>'),
             
             h6("Negotiation", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("handshake", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-handshake fa-3x"></i>
+                  </a>'),
             
             h6("Under Contract", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("file-contract", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-file-contract fa-3x"></i>
+                  </a>'),
             
             h6("Final Details", style = "color:#06357a;"), style="text-align: center;",
             
-            f7Link(label = icon("truck-moving", "fa-3x"),
-                   src = "https://www.kwmemorial.com/services/sellers/",
-                   external = TRUE),
+            HTML('<a href="https://www.kwmemorial.com/services/sellers/" target = "_blank">
+                  <i class=" fa fa-truck-moving fa-3x"></i>
+                  </a>'),
             
             h6("Moving Day", style = "color:#06357a;"), style="text-align: center;",
             tags$iframe(width="560", height="315", src="https://www.youtube.com/embed/zj7Y1zxfJk4",
@@ -259,7 +277,8 @@ ui <- material_page(
                         
                         button_icon = "touch_app",
                         title = "",
-                        f7Block(
+                        material_card(
+                          title = '', depth = 2,
                           h6("We also provide assistance in finding the perfect rental
                       for you.  The options in Houston are numerous and
          can be adapted to what's most imporant to you.", style = "color:#06357a;"),
@@ -403,10 +422,11 @@ server <- function(input, output, session){
   
   output$protect <- renderUI({
     # url <- a(strong("TREC Consumer Notice"), href="http://docs.wixstatic.com/ugd/07f529_2661e82ee694419f90ff6e5faa493c46.pdf", target = "_blank")
-    # tagList( url)
-    f7Link(label = strong("TREC Consumer Notice"),
-           src = "http://docs.wixstatic.com/ugd/07f529_2661e82ee694419f90ff6e5faa493c46.pdf",
-           external = TRUE)
+    
+    
+    HTML('<a href="http://docs.wixstatic.com/ugd/07f529_2661e82ee694419f90ff6e5faa493c46.pdf" target = "_blank">
+                  TREC Consumer Notice
+                  </a>')
   })
 
   
@@ -414,9 +434,14 @@ server <- function(input, output, session){
   output$trec <- renderUI({
     # url <- a(strong("TREC Consumer Notice"), href="http://docs.wixstatic.com/ugd/07f529_2661e82ee694419f90ff6e5faa493c46.pdf", target = "_blank")
     # tagList( url)
-    f7Link(label = strong("TREC Information"),
-           src = "trec.pdf",
-           external = TRUE)
+    # f7Link(label = strong("TREC Information"),
+    #        src = "trec.pdf",
+    #        external = TRUE)
+    
+    
+    HTML('<a href="trec.pdf" target = "_blank">
+                  TREC Information
+                  </a>')
   })
   
   output$TT <- renderUI({
